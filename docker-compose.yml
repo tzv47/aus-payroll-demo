@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    logging:
+      driver: none
+    networks:
+      - demo
+    ports:
+      - '27017:27017'
+
+  payroll:
+    image: node:10
+    working_dir: /usr/src/app
+    container_name: 'payroll_demo'
+    env_file:
+      - ./payroll/.env
+    depends_on:
+      - mongodb
+    networks:
+      - demo
+    ports:
+      - '8012:8012'
+    volumes:
+      - './payroll:/usr/src/app'
+      - '/root/.npm'
+    command: bash -c "npm run docker:dev"
+
+networks:
+  demo:
+    driver: bridge
