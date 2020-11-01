@@ -5,15 +5,15 @@ import { IsArray, IsDateString, IsNumber } from "class-validator";
 export class Rate {
   @IsNumber()
   @prop({ required: true })
-  public minimumBracket: number;
+  public miniThreshold: number;
 
   @IsNumber()
   @prop({ required: true })
-  public maximumBracket: number;
+  public maxThreshold: number;
 
   @IsNumber()
   @prop({ required: true })
-  public additionalTax: number;
+  public prevThresholdCumulativeValue: number;
 
   @IsNumber()
   @prop({ required: true })
