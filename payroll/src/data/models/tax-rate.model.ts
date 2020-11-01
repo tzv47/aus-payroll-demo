@@ -5,7 +5,7 @@ import { IsArray, IsDateString, IsNumber } from "class-validator";
 export class Rate {
   @IsNumber()
   @prop({ required: true })
-  public miniThreshold: number;
+  public minThreshold: number;
 
   @IsNumber()
   @prop({ required: true })
@@ -20,7 +20,7 @@ export class Rate {
   public rate: number;
 }
 
-@modelOptions({ schemaOptions: { timestamps: true, versionKey: false } })
+@modelOptions({ schemaOptions: { timestamps: true, versionKey: false, collection: "taxRates" } })
 export class TaxRate extends Base<string> {
   @IsDateString()
   @prop({ required: true })
