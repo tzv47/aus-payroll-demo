@@ -1,13 +1,13 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
-import { TaxRateRepository } from "../../data/repositories/tax-rate.repository";
+import { Body, Controller, Post } from "@nestjs/common";
+import { PayrollBuilder } from "../../core/payroll.builder";
 import { GeneratePayrollDto } from "../dtos/payroll.dto";
 
 @Controller("")
 export class PayrollController {
-  constructor(private taxRateRepository: TaxRateRepository) {}
+  constructor(private payrollBuilder: PayrollBuilder) {}
 
   @Post("generate")
   public async generatePayroll(@Body() generatePayrollDtos: Array<GeneratePayrollDto>) {
-    return generatePayrollDtos;
+    return this.payrollBuilder.buildAllPayrolls(generatePayrollDtos);
   }
 }

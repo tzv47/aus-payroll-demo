@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { getConnectionToken, TypegooseModule } from "nestjs-typegoose";
 import { ApiModule } from "./api/api.module";
+import { CoreModule } from "./core/core.module";
 import { DataModule } from "./data/data.module";
 
 @Module({
@@ -20,7 +21,8 @@ import { DataModule } from "./data/data.module";
       inject: [ConfigService]
     }),
     ApiModule,
-    DataModule
+    DataModule,
+    CoreModule
   ],
   controllers: [],
   providers: []
