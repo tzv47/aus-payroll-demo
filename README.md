@@ -17,6 +17,7 @@ run the following steps:
 
 Use following Postman Collection to run the test sample
 https://www.getpostman.com/collections/67c098fa8f0087907203
+Note: If you received 500 error, try to update body raw's type to JSON instead Text.
 
 ## Calculation Assumption
 
