@@ -26,6 +26,20 @@ services:
       - '/root/.npm'
     command: bash -c "npm run docker:dev"
 
+  mongo-seeding:
+    image: node:10
+    container_name: mongo_seeding
+    volumes:
+      - './payroll:/usr/src/app/payroll'
+    depends_on:
+      - mongodb
+    #Here is the command we use to initiate the mongodb seeding
+    command: >
+      sh -c " npm install -g mongo-seeding-cli
+      && cd /usr/src/app/payroll/seed && npm i && seed -u 'mongodb://mongodb:27017/payroll' --drop-database /usr/src/app/payroll/seed/data"
+    networks:
+      - demo
+
 networks:
   demo:
     driver: bridge

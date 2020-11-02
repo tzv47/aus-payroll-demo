@@ -2,8 +2,9 @@
 
 run the following steps:
 
-1. `docker-compose build`
-2. `docker-compose up`
+1. Create .env file in payroll folder
+2. `docker-compose build`
+3. `docker-compose up`
 
 ### Run test cases
 
