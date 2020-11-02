@@ -8,9 +8,11 @@ export class TaxRateRepository {
   constructor(@InjectModel(TaxRate) protected readonly model: ReturnModelType<typeof TaxRate>) {}
 
   public async getTaxTable(startDate: Date, endDate: Date): Promise<TaxRate> {
-    return this.model.findOne({
-      startDate: { $gte: startDate },
-      $or: [{ endDate: null }, { endDate: { $lte: endDate } }]
-    });
+    return this.model
+      .findOne({
+        startDate: { $lte: startDate },
+        $or: [{ endDate: null }, { endDate: { $gte: endDate } }]
+      })
+      .lean();
   }
 }

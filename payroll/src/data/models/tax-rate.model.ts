@@ -1,6 +1,7 @@
 import { Base } from "@typegoose/typegoose/lib/defaultClasses";
 import { modelOptions, prop } from "@typegoose/typegoose";
 import { IsArray, IsDateString, IsNumber } from "class-validator";
+import { Type } from "class-transformer";
 
 export class Rate {
   @IsNumber()
@@ -30,7 +31,7 @@ export class TaxRate extends Base<string> {
   @prop({ required: true })
   public endDate: Date;
 
-  @IsArray()
   @prop({ required: true })
-  public rateTable: Array<Rate>;
+  @Type(() => Rate)
+  public rateTable: Rate[];
 }

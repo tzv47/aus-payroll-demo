@@ -11,7 +11,7 @@ export class GeneratePayrollDto {
   public annualSalary: number;
 
   @IsNumber()
-  public superRate: number;
+  public superPercentage: number;
 
   @IsDateString()
   public startDate: Date;
