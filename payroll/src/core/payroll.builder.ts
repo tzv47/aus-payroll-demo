@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import * as Big from "big.js";
 import * as moment from "moment";
 
@@ -17,6 +17,9 @@ export class PayrollBuilder {
       generatePayrollDtos.map(async generatePayrollDto => {
         const { startDate, endDate, firstName, lastName, annualSalary, superPercentage } = generatePayrollDto;
         const selectedTax = await this.taxRateRepository.getTaxTable(startDate, endDate);
+        if (!selectedTax) {
+          throw new BadRequestException("No available tax found based on given period");
+        }
         const grossIncome = this.setGrossIncome(annualSalary);
         const incomeTax = this.setIncomeTax(annualSalary, selectedTax.rateTable);
         const netIncome = grossIncome - incomeTax;

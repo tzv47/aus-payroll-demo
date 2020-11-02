@@ -1,9 +1,16 @@
 ## How to run
 
-run the following steps
+run the following steps:
 
 1. `docker-compose build`
 2. `docker-compose up`
+
+### Run test cases
+
+run the following steps:
+
+1. `docker exec -it payroll_demo bash`
+2. `npm run test`
 
 ## Sample Request
 
